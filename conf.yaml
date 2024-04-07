@@ -1,0 +1,11 @@
+%YAML:1.0
+---
+udp_streamer:
+   port: 8000
+   ip_address: "127.0.0.1"
+   pack_size: 4096
+   # only receiver
+   frame_width: 1280
+   frame_height: 720
+   frame_interval: 0 # interval between sending packets, us
+   encode_quality: 70
