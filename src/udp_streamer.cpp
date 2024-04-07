@@ -75,7 +75,7 @@ void StreamerBase::save_config()
     fs << "port" << port_;
     fs << "ip_address" << ip_address_;
     fs << "pack_size" << pack_size_;
-    fs.writeComment("only receiver", 0);
+    fs.writeComment("only transmitter", 0);
     fs << "frame_width" << frame_width_;
     fs << "frame_height" << frame_height_;
     fs << "frame_interval" << frame_interval_;
