@@ -5,7 +5,7 @@ udp_streamer:
    ip_address: "127.0.0.1"
    pack_size: 4096
    # only transmitter
-   frame_width: 1280
-   frame_height: 720
-   frame_interval: 0 # interval between sending packets, us
+   frame_width: 720
+   frame_height: 540
+   frame_interval: 50 # interval between sending packets, us
    encode_quality: 70

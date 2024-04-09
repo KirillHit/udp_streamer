@@ -5,18 +5,16 @@
 int main(int argc, char * argv[])
 {
     std::string config_path;
-    std::string video_capture_path;
-    
+    int video_capture_path;
     if (argc != 3) {
-        std::cerr << "Err: Wrong command!\n  arg1: Path to the config file\n  arg2: Camera device path" << std::endl;
+        std::cerr << "Err: Wrong command!\n  arg1: Path to the config file\n  arg2: Camera number" << std::endl;
         exit(1);
     }
-
     config_path = argv[1];
-    video_capture_path = argv[2];
+    video_capture_path = atoi(argv[2]);
     
-    udp_streamer::Transmitter transmitter(config_path);
-
+    udp_streamer::Transmitter transmitter;
+    transmitter.load_config(config_path);
     transmitter.save_config();
 
     cv::VideoCapture cap(video_capture_path);
@@ -24,7 +22,6 @@ int main(int argc, char * argv[])
         std::cerr << "Err: Failed to open camera" << std::endl;
         exit(1);
     }
-
     cv::namedWindow("Transmitter", cv::WINDOW_AUTOSIZE);
     cv::Mat original_img;
 

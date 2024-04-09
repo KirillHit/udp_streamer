@@ -1,0 +1,5 @@
+add_executable(udp_transmitter udp_transmitter.cpp)
+target_link_libraries(udp_transmitter PRIVATE udp_streamer)
+
+add_executable(udp_receiver udp_receiver.cpp)
+target_link_libraries(udp_receiver PRIVATE udp_streamer)

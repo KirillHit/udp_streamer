@@ -13,14 +13,12 @@ int main(int argc, char * argv[])
 
     config_path = argv[1];
     
-    udp_streamer::Receiver receiver(config_path);
-
+    udp_streamer::Receiver receiver;
+    receiver.load_config(config_path);
     receiver.save_config();
 
     cv::namedWindow("Receiver", cv::WINDOW_AUTOSIZE);
-    
-    int buf_len = 65535; 
-    std::vector<uchar> buf(buf_len);
+
     cv::Mat output_img;
 
     while (true)
