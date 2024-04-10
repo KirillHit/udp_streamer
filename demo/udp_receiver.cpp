@@ -2,20 +2,12 @@
 #include "opencv2/opencv.hpp"
 #include <iostream>
 
-int main(int argc, char * argv[])
-{
-    std::string config_path;
-    
-    if (argc != 2) {
-        std::cerr << "Err: Wrong command!\n  arg1: Path to the config file\n  arg2: Camera device path" << std::endl;
-        exit(1);
-    }
-
-    config_path = argv[1];
-    
+int main()
+{    
     udp_streamer::Receiver receiver;
-    receiver.load_config(config_path);
-    receiver.save_config();
+    receiver.set_socket("127.0.0.1", 8000);
+    receiver.socket_bind();
+    receiver.set_pack_size(4096);
 
     cv::namedWindow("Receiver", cv::WINDOW_AUTOSIZE);
 

@@ -11,8 +11,8 @@ cmake -DDemo:=ON ..
 cmake --build .
 cd Demo
 # First terminal
-.\udp_transmitter ..\..\conf.yaml 0
+.\udp_transmitter
 # second terminal
-.\udp_receiver ..\..\conf.yaml
+.\udp_receiver
 ```
 

@@ -2,22 +2,16 @@
 #include "opencv2/opencv.hpp"
 #include <iostream>
 
-int main(int argc, char * argv[])
+int main()
 {
-    std::string config_path;
-    int video_capture_path;
-    if (argc != 3) {
-        std::cerr << "Err: Wrong command!\n  arg1: Path to the config file\n  arg2: Camera number" << std::endl;
-        exit(1);
-    }
-    config_path = argv[1];
-    video_capture_path = atoi(argv[2]);
-    
     udp_streamer::Transmitter transmitter;
-    transmitter.load_config(config_path);
-    transmitter.save_config();
+    transmitter.set_socket("127.0.0.1", 8000);
+    transmitter.set_pack_size(4096);
+    transmitter.set_size(720, 480);
+    transmitter.set_interval(50);
+    transmitter.set_encode_quality(70);
 
-    cv::VideoCapture cap(video_capture_path);
+    cv::VideoCapture cap(0);
     if (!cap.isOpened()) {
         std::cerr << "Err: Failed to open camera" << std::endl;
         exit(1);
