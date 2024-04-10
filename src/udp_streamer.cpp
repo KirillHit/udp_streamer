@@ -121,14 +121,14 @@ int Transmitter::send_img(const cv::Mat& img)
     cv::imencode(".jpg", resize_img_, buf_img_, encode_params);
 
     int total_pack = (buf_img_.size() - 1) / pack_size_ + 1;
-    unsigned char* proc_data = buf_img_.data();
+    char* proc_data =reinterpret_cast<char*>(buf_img_.data()); // TODO reinterpret_cast here
 
     send_mes(reinterpret_cast<char*>(&total_pack), sizeof(int));
 
     std::this_thread::sleep_for(std::chrono::microseconds(frame_interval_));
 
     for (int i = 0; i < total_pack; i++) {
-        send_mes(reinterpret_cast<char*>(proc_data), pack_size_);
+        send_mes(proc_data, pack_size_);
         proc_data += pack_size_;
         std::this_thread::sleep_for(std::chrono::microseconds(frame_interval_));
     }
