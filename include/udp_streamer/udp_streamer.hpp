@@ -14,7 +14,7 @@
 namespace udp_streamer
 {
 
-const char EndId = 0xED;
+const char EndId = (char)0xED;
 
 
 class Transmitter : public sockets::UDPClient

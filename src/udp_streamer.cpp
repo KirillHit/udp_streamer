@@ -11,8 +11,8 @@ Transmitter::Transmitter()
 
 void Transmitter::set_size(const int width, const int height)
 {
-    frame_width_ = cv::max(width, 320);
-    frame_height_ = cv::max(frame_height_, 200);
+    frame_width_ = cv::max(width, 1);
+    frame_height_ = cv::max(height, 1);
 }
 void Transmitter::set_interval(const int interval)
 {
