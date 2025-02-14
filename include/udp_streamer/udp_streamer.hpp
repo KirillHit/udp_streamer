@@ -30,7 +30,6 @@ class Transmitter : public sockets::UDPClient
     Transmitter();
     ~Transmitter() = default;
     int send_img(const cv::Mat &img);
-    void set_size(const int width, const int height);
     void set_interval(const int interval);
     void set_pack_size(const int pack_size);
     void set_encode_quality(const int encode_quality);
@@ -38,11 +37,8 @@ class Transmitter : public sockets::UDPClient
   private:
     // udp pack_size (max 65535, note that osx limits < 8100 bytes)
     int pack_size_ = 4096;
-    int frame_width_ = 720;
-    int frame_height_ = 540;
     int frame_interval_ = 0;
     int encode_quality_ = 70;
-    cv::Mat resize_img_;
     std::vector<unsigned char> buf_img_;
     StartMsg tx_msg_;
 };

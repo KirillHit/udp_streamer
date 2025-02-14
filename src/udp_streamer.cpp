@@ -8,12 +8,6 @@ Transmitter::Transmitter() : UDPClient()
     tx_msg_.pack_size = pack_size_;
 }
 
-void Transmitter::set_size(const int width, const int height)
-{
-    frame_width_ = cv::max(width, 1);
-    frame_height_ = cv::max(height, 1);
-}
-
 void Transmitter::set_interval(const int interval)
 {
     frame_interval_ = cv::max(interval, 0);
@@ -34,13 +28,10 @@ void Transmitter::set_encode_quality(const int encode_quality)
 
 int Transmitter::send_img(const cv::Mat &img)
 {
-    cv::resize(img, resize_img_, cv::Size(frame_width_, frame_height_), 0, 0,
-               cv::INTER_LINEAR);
-
     std::vector<int> encode_params = {cv::IMWRITE_JPEG_QUALITY,
                                       encode_quality_};
 
-    cv::imencode(".jpg", resize_img_, buf_img_, encode_params);
+    cv::imencode(".jpg", img, buf_img_, encode_params);
 
     uint16_t total_pack = (buf_img_.size() - 1) / pack_size_ + 1;
     tx_msg_.total_pack = total_pack;
