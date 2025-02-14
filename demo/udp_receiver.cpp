@@ -5,9 +5,8 @@
 int main()
 {
     udp_streamer::Receiver receiver;
-    receiver.set_socket("127.0.0.1", 8000);
+    receiver.set_socket("", 8000);
     receiver.socket_bind();
-    receiver.set_timeout(1); // default
 
     cv::namedWindow("Receiver", cv::WINDOW_AUTOSIZE);
 

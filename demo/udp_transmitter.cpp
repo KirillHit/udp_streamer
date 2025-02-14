@@ -6,10 +6,9 @@ int main()
 {
     udp_streamer::Transmitter transmitter;
     transmitter.set_socket("127.0.0.1", 8000);
-    transmitter.set_pack_size(4096);    // default
-    transmitter.set_size(720, 480);     // default
-    transmitter.set_interval(0);        // default
-    transmitter.set_encode_quality(70); // default
+    transmitter.set_pack_size(4096);
+    transmitter.set_interval(50);
+    transmitter.set_encode_quality(70);
 
     cv::VideoCapture cap(0);
     if (!cap.isOpened())
